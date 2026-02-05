@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-<body>
-    <h3>Contact us</h3>
-</body>
-</html>
+@extends("layout")
+@section("pageTitle")
+    Contact
+@endsection
+@section("content")
+    <form action="" method="post" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
+        <h3>Contact Form</h3>
+        <input type="email" name="email" class="form-control mb-3" 
+        id="FormControlInput1" placeholder="Your email">
+        <input type="text" name="title" class="form-control mb-3" 
+        id="FormControlInput2" placeholder="Title">
+        <textarea class="form-control mb-3" name="message" id="FormTextarea1" 
+        rows="3" placeholder="Message"></textarea>
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </form>
+@endsection
