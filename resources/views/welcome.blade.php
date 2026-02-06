@@ -3,5 +3,7 @@
     Main page
 @endsection
 @section("content")
-    <p>Main page</p>
+    <p>{{$pozdrav}}</p> <br>
+    <p>Trenutno vrijeme je {{$trenutnoVrijeme}}</p> <br>
+    <p>Trenutni sat je {{$trenutniSat}}</p>
 @endsection
