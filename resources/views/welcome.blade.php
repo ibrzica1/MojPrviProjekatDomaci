@@ -3,7 +3,10 @@
     Main page
 @endsection
 @section("content")
-    <p>{{$pozdrav}}</p> <br>
-    <p>Trenutno vrijeme je {{$trenutnoVrijeme}}</p> <br>
-    <p>Trenutni sat je {{$trenutniSat}}</p>
+    @foreach($newestProducts as $newestProduct)
+        <p>name: {{$newestProduct->name}}</p> <br>
+        <p>description: {{$newestProduct->description}}</p> <br>
+        <p>amount: {{$newestProduct->amount}}</p> <br>
+        <p>price: {{$newestProduct->price}}</p> <br>
+    @endforeach
 @endsection
