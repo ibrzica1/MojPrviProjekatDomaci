@@ -1,3 +1,3 @@
-<footer class="fixed-bottom">
+<footer >
     @ 2026 All rigts reserved
 </footer>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Contact;
 
+use function Laravel\Prompts\error;
+
 class ContactController extends Controller
 {
     public function index()
@@ -18,5 +20,23 @@ class ContactController extends Controller
     {
         $contacts = Contact::all();
         return view('allContacts', compact('contacts'));
+    }
+
+    public function sendContact(Request $request)
+    {
+       
+        $request->validate([
+            "email" => "required|string",
+            "subject" => "required|string",
+            "description" => "required|string|min:5"
+        ]);
+
+        Contact::create([
+            "email" => $request->get('email'),
+            "title" => $request->get('subject'),
+            "message" => $request->get('description')
+        ]);
+
+        return redirect("/shop");
     }
 }

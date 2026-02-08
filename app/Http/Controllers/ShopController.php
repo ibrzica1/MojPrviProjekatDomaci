@@ -13,4 +13,15 @@ class ShopController extends Controller
         $allProducts = Product::all();
         return view('shop', compact('allProducts'));
     }
+
+    public function addProductPage()
+    {
+        return view("addProduct");
+    }
+
+    public function addProductPage(Request $request)
+    {
+        
+    }
+
 }
