@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Contact extends Model
 {
+    protected $table = 'contact';
     
     protected $fillable = [
-        'description','amount','price','image'
+        'email','title','message'
     ];
 }

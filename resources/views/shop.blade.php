@@ -3,11 +3,10 @@
     Shop
 @endsection
 @section("content")
-    @foreach($products as $product)
-        @if($product === 'iPhone 14' || $product === 'iPhone 13 pro')
-            <p>{{$product}} - SUPER SNIZENJE</p>
-        @else
-            <p>{{$product}}</p>
-        @endif
+    @foreach($allProducts as $product)
+        <p>name: {{$product->name}}</p> <br>
+        <p>description: {{$product->description}}</p> <br>
+        <p>amount: {{$product->amount}}</p> <br>
+        <p>price: {{$product->price}}</p> <br>
     @endforeach
 @endsection
