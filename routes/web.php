@@ -23,4 +23,6 @@ Route::get('/admin/all-contacts',[ContactController::class,'allContacts']);
 Route::post('/send-contact',[ContactController::class,'sendContact']);
 
 Route::get('/admin/add-product',[ShopController::class,'addProductPage']);
-Route::post('/add-product',[ShopController::class,'addProduct']);
+Route::post('/add_product',[ShopController::class,'addProduct']);
+
+Route::get('/admin/products',[ShopController::class,'allProducts']);
