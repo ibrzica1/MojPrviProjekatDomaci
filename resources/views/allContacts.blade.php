@@ -4,9 +4,29 @@
     All Contacts
 @endsection
 @section("content")
-    @foreach($contacts as $contact)
-        <p>email: {{$contact->email}}</p> <br>
-        <p>title: {{$contact->title}}</p> <br>
-        <p>message: {{$contact->message}}</p> <br>
-    @endforeach
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Email</th>
+        <th scope="col">Title</th>
+        <th scope="col">Message</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($contacts as $contact)
+            <tr>
+                <th>{{$contact->id}}</th>
+                <td>{{$contact->email}}</td>
+                <td>{{$contact->title}}</td>
+                <td>{{$contact->message}}</td>
+                <td>
+                    <a href="/admin/delete-contact/{{$contact->id}}" class="btn btn-danger">Delete</a>
+                    <a class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+    </table>
 @endsection

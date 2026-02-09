@@ -1,6 +1,6 @@
 @extends("layout")
 @section("pageTitle")
-    About
+    All Products
 @endsection
 @section("content")
 <table class="table table-striped">

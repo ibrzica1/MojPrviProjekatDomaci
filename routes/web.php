@@ -23,6 +23,7 @@ Route::get('/contact',[ContactController::class,'index']);
 Route::get('/admin/all-contacts',[ContactController::class,'allContacts']);
 Route::get('/admin/all-products', [ProductController::class, 'index']);
 Route::get('/admin/delete-product/{product}', [ProductController::class, 'delete']);
+Route::get('/admin/delete-contact/{contact}', [ContactController::class, 'delete']);
 
 Route::post('/send-contact',[ContactController::class,'sendContact']);
 

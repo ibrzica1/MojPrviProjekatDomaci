@@ -39,4 +39,16 @@ class ContactController extends Controller
 
         return redirect("/shop");
     }
+
+    public function delete($contact)
+    {
+        $contact = Contact::where(["id" => $contact])->first();
+        if($contact === null){
+            die("Contact doesnt exist");
+        }
+
+        $contact->delete();
+
+        return redirect()->back();
+    }
 }
