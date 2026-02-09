@@ -4,7 +4,7 @@
 @endsection
 @section("content")
     
-<form action="/add_product" method="POST" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
+<form action="{{route('productSave')}}" method="POST" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
     @if($errors->any())
         <p>Error: {{$errors->first()}}</p>
     @endif
@@ -12,19 +12,19 @@
     <h3>Add New Product</h3>
   <div class="mb-3">
     <label class="form-label">Product Name</label>
-    <input type="text" class="form-control" name="name">
+    <input type="text" class="form-control" name="name" value="{{old('name')}}">
   </div>
   <div class="mb-3">
     <label class="form-label">Product Description</label>
-    <input type="text" class="form-control" name="description">
+    <input type="text" class="form-control" name="description" value="{{old('description')}}">
   </div>
   <div class="mb-3">
     <label class="form-label">Product Amount</label>
-    <input type="number" name="amount" class="form-control">
+    <input type="number" name="amount" class="form-control" value="{{old('amount')}}">
   </div>
   <div class="mb-3">
     <label class="form-label">Product Price</label>
-    <input type="number" step=0.01 name="price" class="form-control">
+    <input type="number" step=0.01 name="price" class="form-control" value="{{old('price')}}">
   </div>
   <div class="mb-3">
     <label class="form-label">Product Image</label>

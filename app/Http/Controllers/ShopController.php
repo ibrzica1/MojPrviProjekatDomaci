@@ -23,7 +23,7 @@ class ShopController extends Controller
     public function addProduct(Request $request)
     {
         $request->validate([
-            "name" => "required|string|min:2|max:50",
+            "name" => "required|string|min:2|max:50|unique:products,name",
             "description" => "required|string|min:2|max:150",
             "amount" => "required|int",
             "price" => "required|between:0,99.99",
@@ -41,7 +41,7 @@ class ShopController extends Controller
             "image" => $request->get('image')
         ]);
 
-        return redirect("/");
+        return redirect()->route('allProducts');
     }
 
     public function allProducts()
