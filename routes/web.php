@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Pr;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,8 @@ Route::get('/contact',[ContactController::class,'index']);
 // Route::view('/contact','contact');
 
 Route::get('/admin/all-contacts',[ContactController::class,'allContacts']);
+Route::get('/admin/all-products', [ProductController::class, 'index']);
+Route::get('/admin/delete-product/{product}', [ProductController::class, 'delete']);
 
 Route::post('/send-contact',[ContactController::class,'sendContact']);
 
