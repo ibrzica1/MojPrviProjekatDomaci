@@ -26,17 +26,12 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function editProductPage($productId)
+    public function editProductPage(Product $product)
     {
-        $singleProduct = Product::where(["id" => $productId])->first();
-        if($singleProduct === null){
-            die("This product doesnt exist");
-        }
-
-        return view("editProduct",compact('singleProduct'));
+        return view("editProduct",compact('product'));
     }
 
-    public function editProduct(Request $request, $productId)
+    public function editProduct(Request $request, Product $product)
     {
         $request->validate([
             "name" => "required|string|min:2|max:50|unique:products,name",
@@ -46,7 +41,7 @@ class ProductController extends Controller
             "image" => "required"
         ]);
 
-        Product::find($productId)->update([
+        $product->update([
             "name" => $request->get('name'),
             "description" => $request->get('description'),
             "amount" => $request->get('amount'),

@@ -3,7 +3,7 @@
     Edit Product
 @endsection
 @section("content")
-    <form action="{{route('changeProduct',['productId' => $singleProduct->id])}}" 
+    <form action="{{route('changeProduct',['product' => $product->id])}}" 
     method="post" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
         @if($errors->any())
             <p>Error: {{$errors->first()}}</p>
@@ -13,16 +13,16 @@
         <h3>Edit Product</h3>
         <label for="">Name</label>
         <input type="text" name="name" class="form-control mb-3" 
-        value="{{$singleProduct->name}}">
+        value="{{$product->name}}">
         <label for="">Description</label>
         <input type="text" name="description" class="form-control mb-3" 
-        value="{{$singleProduct->description}}">
+        value="{{$product->description}}">
         <label for="">Amount</label>
         <input type="number" name="amount" class="form-control mb-3" 
-        value="{{$singleProduct->amount}}">
+        value="{{$product->amount}}">
         <label for="">Price</label>
         <input type="number" name="price" class="form-control mb-3" 
-        value="{{$singleProduct->price}}">
+        value="{{$product->price}}">
         <label for="">Image</label>
         <input type="file" name="image" class="form-control mb-3">
         
