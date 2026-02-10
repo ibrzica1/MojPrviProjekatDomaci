@@ -4,6 +4,6 @@
     <a class="navbar-brand" href="/">Home</a>
     <a class="navbar-brand" href="/shop">Shop</a>
     <a class="navbar-brand" href="/about">About</a>
-    <a class="navbar-brand" href="/contact">Contact</a>
+    <a class="navbar-brand" href="{{route('contact')}}">Contact</a>
   </div>
 </nav>

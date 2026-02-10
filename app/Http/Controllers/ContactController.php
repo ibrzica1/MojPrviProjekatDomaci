@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Contact;
+use App\Models\Product;
 
 use function Laravel\Prompts\error;
 
@@ -22,22 +23,50 @@ class ContactController extends Controller
         return view('allContacts', compact('contacts'));
     }
 
+    public function editContactPage($contactId)
+    {
+        $contact = Contact::where(["id" => $contactId])->first();
+        if($contact === null){
+            die("Contact doesnt exist");
+        }
+
+        return view('editContact',compact('contact'));
+    }
+
     public function sendContact(Request $request)
     {
        
         $request->validate([
             "email" => "required|string",
-            "subject" => "required|string",
-            "description" => "required|string|min:5"
+            "title" => "required|string",
+            "message" => "required|string|min:5"
         ]);
 
         Contact::create([
             "email" => $request->get('email'),
-            "title" => $request->get('subject'),
-            "message" => $request->get('description')
+            "title" => $request->get('title'),
+            "message" => $request->get('message')
         ]);
 
         return redirect("/shop");
+    }
+
+    public function editContact(Request $request, $contactId)
+    {
+        
+        $request->validate([
+            "email" => "required|string",
+            "title" => "required|string",
+            "message" => "required|string|min:5"
+        ]);
+
+        Contact::find($contactId)->update([
+            "email" => $request->get('email'),
+            "title" => $request->get('title'),
+            "message" => $request->get('message')
+        ]);
+
+        return redirect()->route('all_contacts');
     }
 
     public function delete($contact)
