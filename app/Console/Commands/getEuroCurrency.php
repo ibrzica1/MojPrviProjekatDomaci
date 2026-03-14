@@ -30,9 +30,16 @@ class getEuroCurrency extends Command
         $request = Http::get('https://api.frankfurter.dev/v1/latest');
         $response = $request->json();
 
-        ExchangeRates::create([
-            'currency' => 'EUR',
-            'value' => $response['rates']['USD']
-        ]);
+        $exist = ExchangeRates::where('currency','EUR')
+        ->whereDate('created_at',date('Y-m-d'))
+        ->first();
+
+        if($exist !== null){
+             ExchangeRates::create([
+                'currency' => 'EUR',
+                'value' => $response['rates']['USD']
+            ]);
+        }
+       
     }
 }
