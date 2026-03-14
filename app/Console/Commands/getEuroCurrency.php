@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ExchangeRates;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -29,6 +30,9 @@ class getEuroCurrency extends Command
         $request = Http::get('https://api.frankfurter.dev/v1/latest');
         $response = $request->json();
 
-        dd($response['rates']['USD']);
+        ExchangeRates::create([
+            'currency' => 'EUR',
+            'value' => $response['rates']['USD']
+        ]);
     }
 }
