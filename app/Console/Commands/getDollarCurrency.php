@@ -30,11 +30,9 @@ class getDollarCurrency extends Command
         $request = Http::get('https://api.frankfurter.dev/v1/latest?base=USD');
         $response = $request->json();
 
-        $exist = ExchangeRates::where('currency','USD')
-        ->whereDate('created_at',date('Y-m-d'))
-        ->first();
+        $exist = ExchangeRates::getTodayCurrency('USD');
 
-        if($exist !== null){
+        if($exist === null){
             ExchangeRates::create([
                 'currency' => 'USD',
                 'value' => $response['rates']['EUR']
