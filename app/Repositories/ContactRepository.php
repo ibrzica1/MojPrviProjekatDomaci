@@ -17,4 +17,13 @@ class ContactRepository
     {
         return Contact::where(["id" => $contactId])->first();
     }
+
+    public function saveContact($request)
+    {
+        $this->contactModel->create([
+            "email" => $request->get('email'),
+            "title" => $request->get('title'),
+            "message" => $request->get('message')
+        ]);
+    }
 }

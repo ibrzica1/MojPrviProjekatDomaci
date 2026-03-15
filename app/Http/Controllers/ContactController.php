@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Contact;
@@ -34,7 +35,7 @@ class ContactController extends Controller
     public function editContactPage($contactId)
     {
         $contact = $this->contactRepo->getContactById($contactId);
-        
+
         if($contact === null){
             die("Contact doesnt exist");
         }
@@ -42,21 +43,9 @@ class ContactController extends Controller
         return view('editContact',compact('contact'));
     }
 
-    public function sendContact(Request $request)
+    public function sendContact(SaveContactRequest $request)
     {
-       
-        $request->validate([
-            "email" => "required|string",
-            "title" => "required|string",
-            "message" => "required|string|min:5"
-        ]);
-
-        Contact::create([
-            "email" => $request->get('email'),
-            "title" => $request->get('title'),
-            "message" => $request->get('message')
-        ]);
-
+        $this->contactRepo->saveContact($request);
         return redirect("/shop");
     }
 
