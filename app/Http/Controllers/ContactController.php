@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Contact;
 use App\Models\Product;
+use App\Repositories\ContactRepository;
 
 use function Laravel\Prompts\error;
 
 class ContactController extends Controller
 {
+    private $contactRepo;
+
+    public function __construct()
+    {
+        $this->contactRepo = new ContactRepository();    
+    }
+
     public function index()
     {
         return view('contact');
@@ -25,7 +33,8 @@ class ContactController extends Controller
 
     public function editContactPage($contactId)
     {
-        $contact = Contact::where(["id" => $contactId])->first();
+        $contact = $this->contactRepo->getContactById($contactId);
+        
         if($contact === null){
             die("Contact doesnt exist");
         }

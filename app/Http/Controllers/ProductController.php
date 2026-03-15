@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -40,16 +41,8 @@ class ProductController extends Controller
         return view("editProduct",compact('product'));
     }
 
-    public function editProduct(Request $request, Product $product)
+    public function editProduct(SaveProductRequest $request, Product $product)
     {
-        $request->validate([
-            "name" => "required|string|min:2|max:50|unique:products,name",
-            "description" => "required|string|min:2|max:150",
-            "amount" => "required|int",
-            "price" => "required|between:0,99.99",
-            "image" => "required"
-        ]);
-
        $this->productRepo->updateProduct($request,$product);
 
         return redirect()->route('allProducts');
