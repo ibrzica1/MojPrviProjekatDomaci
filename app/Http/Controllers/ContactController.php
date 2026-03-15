@@ -57,7 +57,7 @@ class ContactController extends Controller
 
     public function delete($contact)
     {
-        $contact = Contact::where(["id" => $contact])->first();
+        $contact = $this->contactRepo->getContactById($contact);
         if($contact === null){
             die("Contact doesnt exist");
         }
