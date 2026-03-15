@@ -26,4 +26,13 @@ class ContactRepository
             "message" => $request->get('message')
         ]);
     }
+
+    public function editContact($contact, $request)
+    {
+        $contact->update([
+            "email" => $request->get('email'),
+            "title" => $request->get('title'),
+            "message" => $request->get('message')
+        ]);
+    }
 }

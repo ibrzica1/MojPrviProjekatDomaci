@@ -49,21 +49,9 @@ class ContactController extends Controller
         return redirect("/shop");
     }
 
-    public function editContact(Request $request, $contactId)
+    public function editContact(SaveContactRequest $request, Contact $contact)
     {
-        
-        $request->validate([
-            "email" => "required|string",
-            "title" => "required|string",
-            "message" => "required|string|min:5"
-        ]);
-
-        Contact::find($contactId)->update([
-            "email" => $request->get('email'),
-            "title" => $request->get('title'),
-            "message" => $request->get('message')
-        ]);
-
+        $this->contactRepo->editContact($contact,$request);
         return redirect()->route('all_contacts');
     }
 

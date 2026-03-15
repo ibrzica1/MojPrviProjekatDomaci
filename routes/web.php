@@ -39,7 +39,7 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
         ->name('addContact');
     Route::get('/edit-contacts/{contactId}', [ContactController::class,'editContactPage'])
         ->name('changeContactPage');
-    Route::patch('/edit_contacts/{contactId}', [ContactController::class,'editContact'])
+    Route::patch('/edit_contacts/{contact}', [ContactController::class,'editContact'])
         ->name('changeContact');
     Route::get('/all-contacts',[ContactController::class,'allContacts'])
         ->name('all_contacts');
