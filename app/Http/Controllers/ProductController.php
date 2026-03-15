@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo = new ProductRepository();
+    }
+
     public function index()
     {
         $allProducts = Product::all();
@@ -16,7 +24,8 @@ class ProductController extends Controller
 
     public function delete($product)
     {
-        $singleProduct = Product::where(["id" => $product])->first();
+        $singleProduct = $this->productRepo->find($product);
+        
         if($singleProduct === null){
             die("This product doesnt exist");
         }

@@ -6,9 +6,17 @@ use Illuminate\Validation\Rules\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
 
 class ShopController extends Controller
 {
+
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo = new ProductRepository();
+    }
     public function index()
     {
         $allProducts = Product::all();
@@ -33,13 +41,7 @@ class ShopController extends Controller
             ->max(12 * 1024),
         ]);
 
-        Product::create([
-            "name" => $request->get('name'),
-            "description" => $request->get('description'),
-            "amount" => $request->get('amount'),
-            "price" => $request->get('price'),
-            "image" => $request->get('image')
-        ]);
+        $this->productRepo->createNew($request);
 
         return redirect()->route('allProducts');
     }
