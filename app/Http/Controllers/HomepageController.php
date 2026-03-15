@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
 
 class HomepageController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo = new ProductRepository();
+    }
+
     public function index()
     {
-        $newestProducts = Product::latest()->take(6)->get();
+        $newestProducts = $this->productRepo->getLatestProducts();
         return view('welcome', compact('newestProducts'));
     }
 }

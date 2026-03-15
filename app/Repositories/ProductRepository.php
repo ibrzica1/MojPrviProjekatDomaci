@@ -39,4 +39,9 @@ class ProductRepository
             "image" => $request->get('image')
         ]);
     }
+
+    public function getLatestProducts()
+    {
+        return Product::latest()->take(6)->get();
+    }
 }
