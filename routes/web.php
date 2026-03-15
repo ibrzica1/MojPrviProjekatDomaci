@@ -54,9 +54,9 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
     Route::post('/add_product',[ShopController::class,'addProduct'])
         ->name("productSave");
     Route::get('/products',[ShopController::class,'allProducts']);
-    Route::get('/edit-products/{productId}', [ProductController::class,'editProductPage'])
+    Route::get('/edit-products/{product}', [ProductController::class,'editProductPage'])
         ->name('changeProductPage');
-    Route::patch('/edit_product/{productId}', [ProductController::class,'editProduct'])
+    Route::patch('/edit_product/{product}', [ProductController::class,'editProduct'])
         ->name('changeProduct');
 
 });

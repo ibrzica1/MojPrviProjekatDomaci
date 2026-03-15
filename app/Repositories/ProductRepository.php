@@ -28,4 +28,15 @@ class ProductRepository
     {
         return Product::where(["id" => $productId])->first();
     }
+
+    public function updateProduct($request,$product)
+    {
+         $product->update([
+            "name" => $request->get('name'),
+            "description" => $request->get('description'),
+            "amount" => $request->get('amount'),
+            "price" => $request->get('price'),
+            "image" => $request->get('image')
+        ]);
+    }
 }

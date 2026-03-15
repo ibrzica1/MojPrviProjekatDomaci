@@ -50,13 +50,7 @@ class ProductController extends Controller
             "image" => "required"
         ]);
 
-        $product->update([
-            "name" => $request->get('name'),
-            "description" => $request->get('description'),
-            "amount" => $request->get('amount'),
-            "price" => $request->get('price'),
-            "image" => $request->get('image')
-        ]);
+       $this->productRepo->updateProduct($request,$product);
 
         return redirect()->route('allProducts');
     }
