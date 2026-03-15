@@ -24,7 +24,7 @@ class ProductRepository
         ]);
     }
 
-    public function find($productId)
+    public function findProductById($productId)
     {
         return Product::where(["id" => $productId])->first();
     }

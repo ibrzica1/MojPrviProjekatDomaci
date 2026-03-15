@@ -24,8 +24,8 @@ class ProductController extends Controller
 
     public function delete($product)
     {
-        $singleProduct = $this->productRepo->find($product);
-        
+        $singleProduct = $this->productRepo->findProductById($product);
+
         if($singleProduct === null){
             die("This product doesnt exist");
         }
