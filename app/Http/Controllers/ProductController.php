@@ -45,6 +45,6 @@ class ProductController extends Controller
     {
        $this->productRepo->updateProduct($request,$product);
 
-        return redirect()->route('allProducts');
+        return redirect()->route('product.all');
     }
 }

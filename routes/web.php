@@ -36,29 +36,29 @@ Route::get('/contact',[ContactController::class,'index'])
 Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(function() {
 
     Route::controller(ContactController::class)->prefix('/contact')->group(function() {
-        Route::get('/all','allContacts')->name('all_contacts');
-        Route::post('/send','sendContact')->name('addContact');
-        Route::get('/edit/{contactId}','editContactPage')->name('changeContactPage');
-        Route::patch('/change/{contact}','editContact')->name('changeContact');
-        Route::get('/delete/{contact}','delete')->name("contactDelete");
+        Route::get('/all','allContacts')->name('contact.all');
+        Route::post('/send','sendContact')->name('contact.add');
+        Route::get('/edit/{contactId}','editContactPage')->name('contact.change.page');
+        Route::patch('/change/{contact}','editContact')->name('contact.change');
+        Route::get('/delete/{contact}','delete')->name("contact.delete");
     });
     
     Route::controller(ProductController::class)->prefix('/product')->group(function() {
         Route::get('/all','index')
             ->middleware('auth')
-            ->name('allProducts');
+            ->name('product.all');
         Route::get('/delete/{product}','delete')
-            ->name("productDelete");
+            ->name("product.delete");
         Route::get('/edit/{product}','editProductPage')
-            ->name('changeProductPage');
+            ->name('product.change.page');
         Route::patch('/change/{product}','editProduct')
-            ->name('changeProduct');
+            ->name('product.change');
     });
     
     Route::controller(ShopController::class)->group(function() {
         Route::get('/add-product','addProductPage');
         Route::post('/add_product','addProduct')
-            ->name("productSave");
+            ->name("product.save");
         Route::get('/products','allProducts');
     });
     

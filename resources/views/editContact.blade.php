@@ -3,7 +3,7 @@
     Edit Contact
 @endsection
 @section("content")
-    <form action="{{route('changeContact',['contact' => $contact->id])}}" 
+    <form action="{{route('contact.change',['contact' => $contact->id])}}" 
     method="post" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
         @if($errors->any())
             <p>Error: {{$errors->first()}}</p>

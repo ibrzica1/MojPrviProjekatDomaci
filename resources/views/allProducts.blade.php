@@ -23,8 +23,8 @@
             <td>{{$product->amount}}</td>
             <td>{{$product->price}}</td>
             <td>
-                <a href="{{route('productDelete',['product' => $product->id])}}" class="btn btn-danger">Delete</a>
-                <a href="{{route('changeProductPage',['product' => $product->id])}}" class="btn btn-primary">Edit</a>
+                <a href="{{route('product.delete',['product' => $product->id])}}" class="btn btn-danger">Delete</a>
+                <a href="{{route('product.change.page',['product' => $product->id])}}" class="btn btn-primary">Edit</a>
             </td>
         </tr>
     @endforeach

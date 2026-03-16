@@ -46,7 +46,7 @@ class ContactController extends Controller
     public function sendContact(SaveContactRequest $request)
     {
         $this->contactRepo->saveContact($request);
-        return redirect("/shop");
+        return redirect()->route('shop');
     }
 
     public function editContact(SaveContactRequest $request, Contact $contact)

@@ -4,7 +4,7 @@
 @endsection
 @section("content")
     
-<form action="{{route('productSave')}}" method="POST" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
+<form action="{{route('product.save')}}" method="POST" class="col-10 col-md-8 col-lg-6 p-4 mb-3">
     @if($errors->any())
         <p>Error: {{$errors->first()}}</p>
     @endif
