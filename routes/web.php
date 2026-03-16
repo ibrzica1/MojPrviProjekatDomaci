@@ -36,15 +36,15 @@ Route::get('/contact',[ContactController::class,'index'])
 Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(function() {
 
     Route::controller(ContactController::class)->group(function() {
-        Route::get('/all-contacts','allContacts')
+        Route::get('/contact/all','allContacts')
             ->name('all_contacts');
-        Route::post('/send-contact','sendContact')
+        Route::post('/contact/send','sendContact')
             ->name('addContact');
-        Route::get('/edit-contacts/{contactId}','editContactPage')
+        Route::get('/contact/edit/{contactId}','editContactPage')
             ->name('changeContactPage');
-        Route::patch('/edit_contacts/{contact}','editContact')
+        Route::patch('/contact/change/{contact}','editContact')
             ->name('changeContact');
-        Route::get('/delete-contact/{contact}','delete')
+        Route::get('/contact/delete/{contact}','delete')
             ->name("contactDelete");
     });
     
