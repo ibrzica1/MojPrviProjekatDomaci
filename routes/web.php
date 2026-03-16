@@ -36,30 +36,32 @@ Route::get('/contact',[ContactController::class,'index'])
 Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(function() {
 
     Route::controller(ContactController::class)->prefix('/contact')->group(function() {
-        Route::get('/all','allContacts')->name('contact.all');
-        Route::post('/send','sendContact')->name('contact.add');
-        Route::get('/edit/{contactId}','editContactPage')->name('contact.change.page');
-        Route::patch('/change/{contact}','editContact')->name('contact.change');
-        Route::get('/delete/{contact}','delete')->name("contact.delete");
+
+        Route::name('contact.')->group(function() {
+            Route::get('/all','allContacts')->name('all');
+            Route::post('/send','sendContact')->name('add');
+            Route::get('/edit/{contactId}','editContactPage')->name('change.page');
+            Route::patch('/change/{contact}','editContact')->name('change');
+            Route::get('/delete/{contact}','delete')->name("delete");
+        });
     });
     
     Route::controller(ProductController::class)->prefix('/product')->group(function() {
-        Route::get('/all','index')
-            ->middleware('auth')
-            ->name('product.all');
-        Route::get('/delete/{product}','delete')
-            ->name("product.delete");
-        Route::get('/edit/{product}','editProductPage')
-            ->name('product.change.page');
-        Route::patch('/change/{product}','editProduct')
-            ->name('product.change');
+
+        Route::name('product.')->group(function() {
+            Route::get('/all','index')->middleware('auth')->name('all');
+            Route::get('/delete/{product}','delete')->name("delete");
+            Route::get('/edit/{product}','editProductPage')->name('change.page');
+            Route::patch('/change/{product}','editProduct')->name('change');
+        });
     });
     
     Route::controller(ShopController::class)->group(function() {
-        Route::get('/add-product','addProductPage');
-        Route::post('/add_product','addProduct')
-            ->name("product.save");
-        Route::get('/products','allProducts');
+
+        Route::name('product.')->group(function() {
+            Route::get('/add-product','addProductPage')->name('add.page');
+            Route::post('/add_product','addProduct')->name("save");
+            Route::get('/products','allProducts')->name('shop.all');
+        });
     });
-    
 });

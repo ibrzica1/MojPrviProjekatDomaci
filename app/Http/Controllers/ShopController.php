@@ -32,7 +32,7 @@ class ShopController extends Controller
     public function addProduct(SaveProductRequest $request)
     {
         $this->productRepo->createNew($request);
-        return redirect()->route('allProducts');
+        return redirect()->route('product.shop.all');
     }
 
     public function allProducts()

@@ -52,7 +52,7 @@ class ContactController extends Controller
     public function editContact(SaveContactRequest $request, Contact $contact)
     {
         $this->contactRepo->editContact($contact,$request);
-        return redirect()->route('all_contacts');
+        return redirect()->route('contact.all');
     }
 
     public function delete($contact)
