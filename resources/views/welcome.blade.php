@@ -7,7 +7,7 @@
         <p>name: {{$newestProduct->name}}</p> <br>
     @endforeach
 
-    <form method="POST" action="/send-contact" style="display: flex; 
+    <form method="POST" action="{{route('addContact')}}" style="display: flex; 
     flex-direction: column; width: 40%; gap: 10px; padding-left: 10px;">
     @if($errors->any())
         <p>Error: {{$errors->first()}}</p>

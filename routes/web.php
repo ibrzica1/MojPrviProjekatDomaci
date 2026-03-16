@@ -24,39 +24,34 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/',[HomepageController::class,'index']);
-
-Route::view('/about','about');
-
-Route::get('/shop',[ShopController::class,'index']);
-
+Route::get('/',[HomepageController::class,'index'])
+    ->name('home');
+Route::view('/about','about')
+    ->name('about');
+Route::get('/shop',[ShopController::class,'index'])
+    ->name('shop');
 Route::get('/contact',[ContactController::class,'index'])
     ->name('contact');
 
 Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(function() {
 
-    Route::controller(ContactController::class)->group(function() {
-        Route::get('/contact/all','allContacts')
-            ->name('all_contacts');
-        Route::post('/contact/send','sendContact')
-            ->name('addContact');
-        Route::get('/contact/edit/{contactId}','editContactPage')
-            ->name('changeContactPage');
-        Route::patch('/contact/change/{contact}','editContact')
-            ->name('changeContact');
-        Route::get('/contact/delete/{contact}','delete')
-            ->name("contactDelete");
+    Route::controller(ContactController::class)->prefix('/contact')->group(function() {
+        Route::get('/all','allContacts')->name('all_contacts');
+        Route::post('/send','sendContact')->name('addContact');
+        Route::get('/edit/{contactId}','editContactPage')->name('changeContactPage');
+        Route::patch('/change/{contact}','editContact')->name('changeContact');
+        Route::get('/delete/{contact}','delete')->name("contactDelete");
     });
     
-    Route::controller(ProductController::class)->group(function() {
-        Route::get('/all-products','index')
+    Route::controller(ProductController::class)->prefix('/product')->group(function() {
+        Route::get('/all','index')
             ->middleware('auth')
             ->name('allProducts');
-        Route::get('/delete-product/{product}','delete')
+        Route::get('/delete/{product}','delete')
             ->name("productDelete");
-        Route::get('/edit-products/{product}','editProductPage')
+        Route::get('/edit/{product}','editProductPage')
             ->name('changeProductPage');
-        Route::patch('/edit_product/{product}','editProduct')
+        Route::patch('/change/{product}','editProduct')
             ->name('changeProduct');
     });
     
