@@ -35,28 +35,36 @@ Route::get('/contact',[ContactController::class,'index'])
 
 Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(function() {
 
-    Route::post('/send-contact',[ContactController::class,'sendContact'])
-        ->name('addContact');
-    Route::get('/edit-contacts/{contactId}', [ContactController::class,'editContactPage'])
-        ->name('changeContactPage');
-    Route::patch('/edit_contacts/{contact}', [ContactController::class,'editContact'])
-        ->name('changeContact');
-    Route::get('/all-contacts',[ContactController::class,'allContacts'])
-        ->name('all_contacts');
-    Route::get('/all-products', [ProductController::class, 'index'])
-        ->middleware('auth')
-        ->name('allProducts');
-    Route::get('/delete-product/{product}', [ProductController::class, 'delete'])
-        ->name("productDelete");
-    Route::get('/delete-contact/{contact}', [ContactController::class, 'delete'])
-        ->name("contactDelete");
-    Route::get('/add-product',[ShopController::class,'addProductPage']);
-    Route::post('/add_product',[ShopController::class,'addProduct'])
-        ->name("productSave");
-    Route::get('/products',[ShopController::class,'allProducts']);
-    Route::get('/edit-products/{product}', [ProductController::class,'editProductPage'])
-        ->name('changeProductPage');
-    Route::patch('/edit_product/{product}', [ProductController::class,'editProduct'])
-        ->name('changeProduct');
-
+    Route::controller(ContactController::class)->group(function() {
+        Route::get('/all-contacts','allContacts')
+            ->name('all_contacts');
+        Route::post('/send-contact','sendContact')
+            ->name('addContact');
+        Route::get('/edit-contacts/{contactId}','editContactPage')
+            ->name('changeContactPage');
+        Route::patch('/edit_contacts/{contact}','editContact')
+            ->name('changeContact');
+        Route::get('/delete-contact/{contact}','delete')
+            ->name("contactDelete");
+    });
+    
+    Route::controller(ProductController::class)->group(function() {
+        Route::get('/all-products','index')
+            ->middleware('auth')
+            ->name('allProducts');
+        Route::get('/delete-product/{product}','delete')
+            ->name("productDelete");
+        Route::get('/edit-products/{product}','editProductPage')
+            ->name('changeProductPage');
+        Route::patch('/edit_product/{product}','editProduct')
+            ->name('changeProduct');
+    });
+    
+    Route::controller(ShopController::class)->group(function() {
+        Route::get('/add-product','addProductPage');
+        Route::post('/add_product','addProduct')
+            ->name("productSave");
+        Route::get('/products','allProducts');
+    });
+    
 });
