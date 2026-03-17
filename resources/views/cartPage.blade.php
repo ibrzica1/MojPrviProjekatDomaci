@@ -3,10 +3,9 @@
     Cart
 @endsection
 @section("content")
-    @foreach($products as $key => $value)
+    @foreach($products as $product)
     
-        <p>{{$key}}</p>
-        <p>{{$value}}</p>
-        
+        <p>{{$product['product_id']}} - {{$product['amount']}}</p>
+
     @endforeach
 @endsection
