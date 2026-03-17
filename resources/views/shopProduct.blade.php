@@ -7,4 +7,10 @@
     <p>description: {{$product->description}}</p> <br>
     <p>amount: {{$product->amount}}</p> <br>
     <p>price: {{$product->price}}</p> <br>
+    <form action="{{route('cart.add')}}" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{$product->id}}">
+        <input type="text" name="amount" placeholder="Enter amount">
+        <button type="submit">Add to cart</button>
+    </form>
 @endsection

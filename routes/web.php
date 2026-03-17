@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProductController;
@@ -64,5 +66,10 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
             Route::get('/products','allProducts')->name('shop.all');
             Route::get('/product/{product}', 'productPage')->name('page');
         });
+    });
+
+    Route::controller(CartController::class)
+    ->name('cart.')->prefix('/cart')->group(function() {
+        Route::post('/add', 'addToCart')->name('add');
     });
 });
