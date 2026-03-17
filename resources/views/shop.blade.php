@@ -8,5 +8,9 @@
         <p>description: {{$product->description}}</p> <br>
         <p>amount: {{$product->amount}}</p> <br>
         <p>price: {{$product->price}}</p> <br>
+        <a href="{{route('product.page',['product' => $product->id])}}" 
+        class="btn btn-primary">
+            See Product
+        </a>
     @endforeach
 @endsection

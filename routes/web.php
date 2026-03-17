@@ -62,6 +62,7 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
             Route::get('/add-product','addProductPage')->name('add.page');
             Route::post('/add_product','addProduct')->name("save");
             Route::get('/products','allProducts')->name('shop.all');
+            Route::get('/product/{product}', 'productPage')->name('page');
         });
     });
 });

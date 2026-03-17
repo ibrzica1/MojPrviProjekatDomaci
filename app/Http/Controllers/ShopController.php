@@ -8,6 +8,7 @@ use App\Http\Requests\SaveProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -39,6 +40,11 @@ class ShopController extends Controller
     {
         $allProducts = Product::all();
         return view('adminProducts', compact('allProducts'));
+    }
+
+    public function productPage(Product $product)
+    {
+        return view('shopProduct', compact('product'));
     }
 
 }
