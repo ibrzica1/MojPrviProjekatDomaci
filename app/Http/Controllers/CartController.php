@@ -10,10 +10,17 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function cartPage()
+    {
+        $products = Session::get('product');
+        return view('cartPage', compact('products'));
+    }
+
     public function addToCart(CartAddRequest $request)
     {
         Session::put('product',[
             $request->id => $request->amount
         ]);
+        return redirect()->route('cart.page');
     }
 }
