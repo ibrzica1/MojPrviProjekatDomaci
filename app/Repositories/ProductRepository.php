@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use Error;
 
 class ProductRepository
 {
@@ -43,5 +44,15 @@ class ProductRepository
     public function getLatestProducts()
     {
         return Product::latest()->take(6)->get();
+    }
+
+    public function checkAmount(int $productId,int $amount): bool
+    {
+        $product = Product::where(["id" => $productId])->first();
+        
+        if($product->amount < $amount){
+            return false;
+        }
+        return true;
     }
 }
