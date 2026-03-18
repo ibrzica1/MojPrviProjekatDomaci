@@ -5,7 +5,9 @@
 @section("content")
     @foreach($products as $product)
         
-        <p>{{$product['product']['name']}} - {{$product['amount']}}</p>
+        <p>Name: {{$product['product']['name']}} Amount: {{$product['amount']}}
+            Price: {{$product['product']['price']}} Total: {{$product['total']}}
+        </p>
 
     @endforeach
 @endsection

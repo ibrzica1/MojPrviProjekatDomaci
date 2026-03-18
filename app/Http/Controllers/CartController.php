@@ -36,10 +36,13 @@ class CartController extends Controller
             return redirect()->route('product.page',['product'=>$productId])
             ->with('error','Amount is too big');
         }
+        $total = $productRepo->calculateTotal($productId,$amount);
 
+        Session::forget('products');
         Session::push('products',[
             'product' => $product,
-            'amount' => $amount
+            'amount' => $amount,
+            'total' => $total
         ]);
         return redirect()->route('cart.page');
     }

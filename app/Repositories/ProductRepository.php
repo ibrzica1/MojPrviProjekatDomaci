@@ -55,4 +55,11 @@ class ProductRepository
         }
         return true;
     }
+
+    public function calculateTotal(int $productId,int $amount)
+    {
+        $product = Product::where(["id" => $productId])->first();
+        return $product->price * $amount;
+    }
+
 }
