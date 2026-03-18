@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CartAddRequest;
+use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -20,7 +21,7 @@ class CartController extends Controller
 
     public function cartPage()
     {
-        $products = Session::get('product');
+        $products = Session::get('products');
         return view('cartPage', compact('products'));
     }
 
@@ -29,12 +30,15 @@ class CartController extends Controller
         $productId = $request->id;
         $amount = $request->amount;
         $productRepo = new ProductRepository();
+
+        $product = $productRepo->findProductById($productId);
         if(!$productRepo->checkAmount($productId,$amount)){
-            return redirect()->route('product.page',['product'=>$productId])->with('error','Amount is too big');
+            return redirect()->route('product.page',['product'=>$productId])
+            ->with('error','Amount is too big');
         }
 
-        Session::push('product',[
-            'product_id' => $productId,
+        Session::push('products',[
+            'product' => $product,
             'amount' => $amount
         ]);
         return redirect()->route('cart.page');

@@ -4,8 +4,8 @@
 @endsection
 @section("content")
     @foreach($products as $product)
-    
-        <p>{{$product['product_id']}} - {{$product['amount']}}</p>
+        
+        <p>{{$product['product']['name']}} - {{$product['amount']}}</p>
 
     @endforeach
 @endsection
