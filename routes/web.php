@@ -73,4 +73,6 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
         Route::get('/page', 'cartPage')->name('page');
         Route::post('/add', 'addToCart')->name('add');
     });
+
+    
 });

@@ -10,4 +10,8 @@
         </p>
 
     @endforeach
+
+    <a href="" class="btn btn-primary">
+        Order
+    </a>
 @endsection
