@@ -13,5 +13,8 @@ class OrderItemsRepository
         $this->orderItemsModel = new OrderItems();
     }
 
-    
+    public function addOrderItem()
+    {
+        
+    }
 }

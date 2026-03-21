@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProfileController;
@@ -74,5 +75,8 @@ Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('admin')->group(
         Route::post('/add', 'addToCart')->name('add');
     });
 
-    
+    Route::controller(OrderController::class)
+    ->name('order.')->prefix('/order')->group(function() {
+        Route::post('/add', 'addOrder')->name('add');
+    });
 });

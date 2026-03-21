@@ -3,6 +3,10 @@
     Cart
 @endsection
 @section("content")
+    @if(session('error'))
+        <p>Error: {{session('error')}}</p>
+    @endif
+    
     @foreach($products as $product)
         
         <p>Name: {{$product['product']['name']}} Amount: {{$product['amount']}}
@@ -11,7 +15,8 @@
 
     @endforeach
 
-    <a href="" class="btn btn-primary">
-        Order
-    </a>
+    <form action="{{route('order.add')}}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-primary">Order</button>
+    </form>
 @endsection
