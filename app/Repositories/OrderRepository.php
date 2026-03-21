@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Orders;
+use Illuminate\Support\Facades\DB;
 
 class OrderRepository
 {
@@ -13,12 +14,13 @@ class OrderRepository
         $this->orderModel = new Orders();
     }
 
-    public function createOrder(int $userId,string $status,float $price): void
+    public function createOrder(int $userId,string $status,float $price): int
     {
-        $this->orderModel->create([
+        $orderId = DB::table('orders')->insertGetId([
             "user_id" => $userId,
             "status" => $status,
             "price" => $price
         ]);
+        return $orderId;
     }
 }
