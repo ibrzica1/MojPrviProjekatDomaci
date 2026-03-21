@@ -9,4 +9,9 @@ class OrderItems extends Model
     protected $fillable = [
         'order_id','amount','product_id','price'
     ];
+
+    public static function calculateItemTotal(float $price,int $amount): float
+    {
+        return $price * $amount;
+    }
 }
