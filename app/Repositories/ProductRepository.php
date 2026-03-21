@@ -66,7 +66,9 @@ class ProductRepository
     {
         $product = Product::where(["id" => $productId])->first();
         $newAmount = $product->amount - $amount;
-        dd($newAmount);
+        $product->update([
+            "amount" => $newAmount
+        ]);
     }
 
 }
