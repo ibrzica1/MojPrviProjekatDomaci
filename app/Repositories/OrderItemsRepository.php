@@ -13,8 +13,13 @@ class OrderItemsRepository
         $this->orderItemsModel = new OrderItems();
     }
 
-    public function addOrderItem()
+    public function addOrderItem(int $orderId,int $amount,int $productId,float $price): void
     {
-        
+        $this->orderItemsModel->create([
+            "order_id" => $orderId,
+            "amount" => $amount,
+            "product_id" => $productId,
+            "price" => $price
+        ]);
     }
 }
