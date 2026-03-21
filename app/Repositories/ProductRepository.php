@@ -62,4 +62,11 @@ class ProductRepository
         return $product->price * $amount;
     }
 
+    public function reduceAmount(int $productId, int $amount): void
+    {
+        $product = Product::where(["id" => $productId])->first();
+        $newAmount = $product->amount - $amount;
+        dd($newAmount);
+    }
+
 }
