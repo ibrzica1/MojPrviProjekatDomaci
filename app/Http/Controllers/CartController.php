@@ -12,13 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    private $productRepo;
-
-    public function __construct()
-    {
-        $productRepo = new ProductRepository();
-    }
-
+    
     public function cartPage()
     {
         $products = Session::get('products');
@@ -38,7 +32,6 @@ class CartController extends Controller
         }
         $total = $productRepo->calculateTotal($productId,$amount);
 
-        Session::forget('products');
         Session::push('products',[
             'product' => $product,
             'amount' => $amount,
